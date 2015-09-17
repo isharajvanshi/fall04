@@ -1,1 +1,129 @@
-Hello World!
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>day03</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../css/toolkit-inverse.css" rel="stylesheet">
+        <script src="http://saasmath.seattleacademy.org/js/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="../../js/toolkit.js"></script>
+   
+
+        <script>
+        	$(document).ready(function() {
+
+                $("#wrong").click(function(e) {
+                    $('#wrongsound').get(0).play();
+                });
+
+                $("#correct").click(function(e) {
+                    rand = Math.random();
+                    //alert(rand);
+                    if (rand > .9) {
+                        $('#correctsound').get(0).play();
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+
+            $('#reset').click(function() {
+                    $('#correct').text("0");
+            });
+                    $('input').change(function() {
+            correct = $(this).data('correct');
+                    response = $(this).val();
+                    if (correct == response) {
+            $(this).removeClass("incorrect").addClass("correct");
+                    numcorrect = $('#correct').text();
+                    //We multiply by 1 change from type text to number
+                    $('#correct').text(numcorrect * 1 + 1);
+                    $(this).nextAll('span:first').html("&#x2713;");
+            }
+            else
+            {
+            $(this).removeClass("correct").addClass("incorrect");
+                    numerrors = $('#errors').text();
+                    $('#errors').text(numerrors * 1 + 1);
+                    $(this).nextAll('span:first').html("&#x2718");
+                    $('#wrongsound').get(0).play();
+            }
+            numcorrect = $('#correct').text();
+                    numerrors = $('#errors').text();
+                    percorrect = numcorrect * 1 / (numcorrect * 1 + numerrors * 1);
+                    //alert(percorrect.toFixed(2) * 100);
+                    $('#percorrect').text(percorrect.toFixed(2) * 100);
+            });
+            });
+        </script>
+
+        <style type="text/css">
+            .correct { 
+                background:lightgreen;
+            }
+
+            .incorrect { 
+                background:orangered;
+            }
+
+            .row {
+                padding-bottom: 4px;
+            }
+            .container{
+                padding-top: 10px;
+            }
+            h2{
+
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <!-- Add bootstrap structure here with divs of class container, row, col-xs-2 etc. -->
+        <div class="container">
+            <div class="statcard col-xs-3">
+                <span class="statcard-number" id="percorrect">100.00</span>
+                <span class="statcard-desc">% Correct</span>
+            </div>
+            <div class="statcard col-xs-3 text-center">
+                <span class="statcard-number" id="correct">0</span>
+                <span class="statcard-desc">Correct</span>
+            </div>
+            <div class="statcard col-xs-3">
+                <span class="statcard-number" id="errors">0</span>
+                <span class="statcard-desc">Errors</span>
+            </div>
+            <div class="reset col-xs-3">
+                <button id="reset" class="btn btn-xs btn-primary-outline">Reset</button>
+            </div>
+            <audio id="wrongsound">
+                <source src="http://saasmath.seattleacademy.org/sound/doh.mp3" type="audio/mpeg" />
+                <source src="http://saasmath.seattleacademy.org/sound/doh.ogg" type="audio/ogg" />
+                Your browser does not support the audio tag.
+            </audio>
+            <h2>Evaluate each expression</h2>
+            <div class="row">
+                <div class="col-xs-2">2<sup>0</sup><input data-correct ="1" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>1</sup><input data-correct ="2" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>2</sup><input data-correct ="4" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>3</sup><input data-correct ="8" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>4</sup><input data-correct ="16" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>5</sup><input data-correct ="32" type="text" size="4"/><span></span></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">2<sup>6</sup><input data-correct ="64" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>7</sup><input data-correct ="128" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>8</sup><input data-correct ="256" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>9</sup><input data-correct ="512" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>10</sup><input data-correct ="1024" type="text" size="4"/><span></span></div>
+                <div class="col-xs-2">2<sup>11</sup><input data-correct ="2048" type="text" size="4"/><span></span></div>
+            </div>
+        </div> 
+        <img src="">  
+    </body>
+
+</html>
